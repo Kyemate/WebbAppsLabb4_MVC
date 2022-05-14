@@ -1,0 +1,61 @@
+﻿@using Shared.Models
+@model Shared.Models.Customer
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+<hr />
+<a asp-action="AddLoan" asp-route-id="@Model.Id" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Lend Book</a>
+<hr />
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans!.FirstOrDefault()!.Book.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans!.FirstOrDefault()!.Book.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans!.FirstOrDefault()!.Book.Isbn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans!.FirstOrDefault()!.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans!.FirstOrDefault()!.LoanDate)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var loan in Model?.Loans) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => loan.Book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => loan.Book.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => loan.Book.Isbn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => loan.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => loan.LoanDate)
+            </td>
+            @*<td>
+                <a asp-action="AddOrEdit" asp-route-id="@loan.Id"><i class="fa fa-marker fa-lg"></i></a>
+                <a asp-action="Delete" asp-route-id="@loan.Id" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+            </td>*@
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+
